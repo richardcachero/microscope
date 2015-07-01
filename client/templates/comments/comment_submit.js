@@ -1,6 +1,6 @@
-Template.commentSubmit.created = function() {
+Template.commentSubmit.onCreated(function() {
   Session.set('commentSubmitErrors', {});
-}
+});
 
 Template.commentSubmit.helpers({
   errorMessage: function(field) {
@@ -16,7 +16,7 @@ Template.commentSubmit.events({
   	e.preventDefault();
 
   	var $body = $(e.target).find('[name=body]');
-  	var comments = {
+  	var comment = {
   	  body: $body.val(),
   	  postId: template.data._id
   	};

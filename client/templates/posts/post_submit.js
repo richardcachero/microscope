@@ -1,3 +1,16 @@
+Template.postSubmit.onCreated(function() {
+  Session.set('postSubmitErrors', {});
+});
+
+Template.postSubmit.helpers({
+  errorMessage: function(field) {
+    return Session.get('postSubmitErrors')[field];
+  },
+  errorClass: function(field) {
+    return !!Session.get('postSubmitErrors')[field] ? 'has-error' : '';
+  }
+});
+
 Template.postSubmit.events({
   'submit form': function(e) {
   	e.preventDefault();
@@ -22,16 +35,3 @@ Template.postSubmit.events({
   	});
   }
 });
-
-Template.postSubmit.created = function() {
-  Session.set('postSubmitErrors', {});
-}
-
-Template.postSubmit.helpers({
-  errorMessage: function(field) {
-    return Session.get('postSubmitErrors')[field];
-  },
-  errorClass: function(field) {
-    return !!Session.get('postSubmitErrors')[field] ? 'has-error' : '';
-  }
-})
